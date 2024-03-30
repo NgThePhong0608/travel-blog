@@ -1,11 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
-
 import express from "express";
 import connectDatabase from "./config/db.js";
-
-console.log(process.env.MONGO_URI);
-// Routes
+import postRoutes from "./routes/postRoutes.js";
 
 // Connect to database
 connectDatabase();
@@ -20,6 +17,8 @@ app.use(
     })
 );
 
+// Routes
+app.use("/api/posts", postRoutes);
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
